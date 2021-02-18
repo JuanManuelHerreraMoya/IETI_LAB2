@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
-import {logo} from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import {TodoApp} from "./components/TodoApp.js";
 import {Login} from "./components/Login.js";
 import 'react-datepicker/dist/react-datepicker.css';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
+const LoginView = () => (
+    <Login/>
+);
+
+const TodoAppView = () => (
+    <TodoApp/>
+);
+
 class App extends Component {
+
 
     constructor(props) {
         super(props);
@@ -16,13 +25,7 @@ class App extends Component {
     }
 
     render() {
-        const LoginView = () => (
-            <Login/>
-        );
 
-        const TodoAppView = () => (
-            <TodoApp/>
-        );
         return (
             <Router>
                 <div className="App">
@@ -35,13 +38,13 @@ class App extends Component {
                     <br/>
 
                     <ul>
-                        {localStorage.getItem('isLoggedIn')==="true"?
-                        <li><Link to="/">Login</Link></li>:<li><Link to="/todo">Todo</Link></li>}
+                        {localStorage.getItem('isLoggedIn') === "true"?
+                            <li><Link to="/todo">Todo</Link></li>:<li><Link to="/">Login</Link></li>}
                     </ul>
 
                     <div>
                         {localStorage.getItem('isLoggedIn')==="true"?
-                        <Route exact path="/" component={LoginView}/>:<Route path="/todo" component={TodoAppView}/>}
+                        <Route exact path="/todo" component={TodoAppView}/>:<Route path="/" component={LoginView}/>}
                     </div>
                 </div>
             </Router>

@@ -3,7 +3,6 @@ import {TodoList} from "./TodoList";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment";
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 export class TodoApp extends React.Component {
@@ -20,19 +19,19 @@ export class TodoApp extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="App">
                 <form onSubmit={this.handleSubmit} className="todo-form">
                     <h3>New TODO</h3>
 
-                    <label htmlFor="text" className="right-margin">
-                        Text:
-                    </label>
-
-                    <input
+                    <TextField
+                        required
                         id="text"
+                        label="Text"
                         onChange={this.handleTextChange}
                         value={this.state.text}>
-                    </input>
+                        variant="outlined"
+                        margin="normal"
+                    </TextField>
 
                     <br/>
                     <br/>

@@ -15,17 +15,15 @@ export class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={email:"", password: ""};
-        this.handleSubmit = this.handleSubmit.bind(this);
-        }
-
-        handleSubmit(e) {
-            if(localStorage.getItem('email')===this.state.email && localStorage.getItem('password')===this.state.password)
-                localStorage.setItem('isLoggedIn',"true");
-            this.setState({email:"",password: ""});
         }
 
 
     render(){
+        const LogIn = () => {
+            if(localStorage.getItem('email') === this.state.email && localStorage.getItem('password') === this.state.password)
+                localStorage.setItem('isLoggedIn', "true");
+            window.location.href = "/todo";
+        }
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -34,9 +32,9 @@ export class Login extends React.Component{
                         <Avatar className="avatar">
                             <LockIcon />
                         </Avatar>
-                        <Typography variant="headline">Sign in</Typography>
+                        <Typography variant="h2">Sign in</Typography>
 
-                        <form className="form" onSubmit={this.handleSubmit}>
+                        <form className="form" >
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
                                 <Input id="email"
@@ -52,7 +50,7 @@ export class Login extends React.Component{
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input
-                                    id="password"
+                                    type="password"
                                     name="password"
                                     id="password"
                                     autoComplete="current-password"
@@ -65,9 +63,10 @@ export class Login extends React.Component{
                             <Button
                                 type="submit"
                                 fullWidth
-                                variant="raised"
+                                variant="contained"
                                 color="primary"
                                 className="submit"
+                                onClick={LogIn}
                             >
                                 Sign in
                             </Button>
